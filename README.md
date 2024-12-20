@@ -27,11 +27,21 @@ import { importLocalOrNpx } from "import-local-or-npx";
 await importLocalOrNpx("create-typescript-app");
 ```
 
+`importLocalOrNpx` allows you to import from a path to a CJS or ESM module, a package name that will be installed with npx.
+It's essentially a coordinating wrapper around:
+
+1. [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve): Used with `await import()` to attempt to load the specifier from a local path if possible
+2. [`npx-import`](https://github.com/geelen/npx-import): If the package can't be found locally, it will be installed to your global system npx cache
+
+Use this project if you'd like to import a package that may or may not exist locally, and if it doesn't yet exist, should be installed in a global cache.
+
 ### Options
 
 `importLocalOrNpx` takes in up two to arguments:
 
-1. `specifier: string` (required): Where to import from
+1. `specifier: string` (required): Where to import from, which can be either:
+   - A local path to a package on disk, such as a relative `"../path/to/directory"`
+   - A package name, such as `"create-typescript-app"`
 2. `options` (optional): any of:
    - `importer`: an asynchronous function to use instead of `import()`
    - `logger`: a logger function to pass to [`npxImport`](https://github.com/geelen/npx-import#api)
@@ -69,14 +79,6 @@ if (imported.kind === "failure") {
 ```
 
 See [`src/types.ts`](./src/types.ts) for specifics.
-
-## Why?
-
-`importLocalOrNpx` allows you to import from a path to a CJS or ESM module, a package name that will be installed with npx.
-It's essentially a coordinating wrapper around:
-
-1. [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve): Used with `await import()` to attempt to load the specifier from a local path if possible
-2. [`npx-import`](https://github.com/geelen/npx-import): If the package can't be found locally, it will be installed to your global system npx cache
 
 ## Development
 
