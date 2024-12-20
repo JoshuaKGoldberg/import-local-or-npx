@@ -22,10 +22,61 @@ npm i import-local-or-npx
 ```
 
 ```ts
-import { greet } from "import-local-or-npx";
+import { importLocalOrNpx } from "import-local-or-npx";
 
-greet("Hello, world! 💖");
+await importLocalOrNpx("create-typescript-app");
 ```
+
+### Options
+
+`importLocalOrNpx` takes in up two to arguments:
+
+1. `specifier: string` (required): Where to import from
+2. `options` (optional): any of:
+   - `importer`: an asynchronous function to use instead of `import()`
+   - `logger`: a logger function to pass to [`npxImport`](https://github.com/geelen/npx-import#api)
+
+```ts
+import { importLocalOrNpx } from "import-local-or-npx";
+
+await importLocalOrNpx("../create-typescript-app", {
+	importer: async (specifier) => await import(specifier),
+	logger: (message) => console.log(message),
+});
+```
+
+### Returned Value
+
+`importLocalOrNpx` returns a Promise for an object satisfying one of three possible types:
+
+1. Local import `{ kind: "local", resolved: object }`: if importing the specifier with `await import()` and [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve) succeeded
+2. npx import `{ kind: "npx", resolved: object }`: failing that, if importing the specifier with [`importNpx`](https://github.com/geelen/npx-import) succeeded
+3. Failure `{ kind: "failure", local: Error; npx: Error }`: if both of those failed
+
+```ts
+import { importLocalOrNpx } from "import-local-or-npx";
+
+const imported = await importLocalOrNpx("../create-typescript-app");
+
+if (imported.kind === "failure") {
+	console.error("Could not import...");
+	console.error(" - Error from local import", imported.local);
+	console.error(" - Error from npx import", imported.npx);
+} else {
+	console.log("Yay! Imported from:", imported.kind);
+	console.log(imported.resolved);
+}
+```
+
+See [`src/types.ts`](./src/types.ts) for specifics.
+
+## Why?
+
+`importLocalOrNpx` allows you to import from a path to a CJS or ESM module, a package name that will be installed with npx.
+It's essentially a coordinating wrapper around:
+
+1. [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve): Used with `await import()` to attempt to load the specifier from a local path if possible
+2. [`npx-import`](https://github.com/geelen/npx-import): If the package can't be found locally, it will be installed to your global system npx cache
 
 ## Development
 

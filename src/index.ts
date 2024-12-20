@@ -1,2 +1,2 @@
-export * from "./greet.js";
-export * from "./types.js";
+export * from "./importLocalOrNpx.js";
+export type * from "./types.js";
