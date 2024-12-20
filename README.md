@@ -27,7 +27,7 @@ import { importLocalOrNpx } from "import-local-or-npx";
 await importLocalOrNpx("create-typescript-app");
 ```
 
-`importLocalOrNpx` allows you to import from a path to a CJS or ESM module, a package name that will be installed with npx.
+`importLocalOrNpx` allows you to import from a path to a CJS or ESM module, or a package name that will be installed with npx.
 It's essentially a coordinating wrapper around:
 
 1. [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve): Used with `await import()` to attempt to load the specifier from a local path if possible
