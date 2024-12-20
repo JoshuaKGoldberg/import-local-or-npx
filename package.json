@@ -35,8 +35,10 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
+		"@release-it/conventional-changelog": "^9.0.3",
 		"enhanced-resolve": "^5.18.0",
-		"npx-import": "^1.1.4"
+		"npx-import": "^1.1.4",
+		"release-it": "^17.10.0"
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.4.1",
