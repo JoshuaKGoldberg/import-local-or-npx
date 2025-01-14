@@ -22,7 +22,7 @@ importers:
         specifier: 9.18.0
         version: 9.18.0
       '@release-it/conventional-changelog':
-        specifier: ^10.0.0
+        specifier: 10.0.0
         version: 10.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@18.1.1(@types/node@22.10.6)(typescript@5.7.3))
       '@types/eslint-plugin-markdown':
         specifier: 2.0.2
@@ -85,7 +85,7 @@ importers:
         specifier: 0.43.0
         version: 0.43.0
       prettier:
-        specifier: ^3.4.2
+        specifier: 3.4.2
         version: 3.4.2
       prettier-plugin-curly:
         specifier: 0.3.1
@@ -97,7 +97,7 @@ importers:
         specifier: 0.14.0
         version: 0.14.0(prettier@3.4.2)
       release-it:
-        specifier: ^18.1.1
+        specifier: 18.1.1
         version: 18.1.1(@types/node@22.10.6)(typescript@5.7.3)
       sentences-per-line:
         specifier: 0.3.0
