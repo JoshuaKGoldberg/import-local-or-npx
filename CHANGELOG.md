@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.3.0](https://github.com/JoshuaKGoldberg/import-local-or-npx/compare/0.2.0...0.3.0) (2025-01-22)
+
+### Features
+
+- add confirm option ([#16](https://github.com/JoshuaKGoldberg/import-local-or-npx/issues/16)) ([cd6768f](https://github.com/JoshuaKGoldberg/import-local-or-npx/commit/cd6768f7dde62ac012152e791b4db94264021f70)), closes [#15](https://github.com/JoshuaKGoldberg/import-local-or-npx/issues/15)
+
 # 0.2.0 (2025-01-14)
 
 ### Bug Fixes
