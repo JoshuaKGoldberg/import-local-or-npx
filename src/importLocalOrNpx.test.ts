@@ -89,4 +89,43 @@ describe("importLocalOrNpx", () => {
 			npx: importedNpx,
 		});
 	});
+
+	it("returns a failure without running npx when importFrom resolves with an error and a provided confirm resolves with an error", async () => {
+		const importer = vi.fn();
+		const specifier = "./relative";
+		const importedLocal = new Error("Failure: local");
+		const cancellation = new Error("Cancelled.");
+		const confirm = vi.fn().mockResolvedValueOnce(cancellation);
+
+		mockImportFrom.mockResolvedValueOnce(importedLocal);
+
+		const actual = await importLocalOrNpx(specifier, {
+			confirm,
+			importer,
+		});
+
+		expect(actual).toEqual({
+			kind: "failure",
+			local: importedLocal,
+			npx: cancellation,
+		});
+		expect(mockNpxImport).not.toHaveBeenCalled();
+	});
+
+	it("returns an import when importFrom resolves with an error, confirm resolves with undefined, and npxImport resolves with a module", async () => {
+		const importer = vi.fn();
+		const specifier = "./relative";
+		const expected = { happy: true };
+		const confirm = vi.fn().mockResolvedValueOnce(undefined);
+
+		mockImportFrom.mockResolvedValueOnce(new Error("Oh no!"));
+		mockNpxImport.mockResolvedValueOnce(expected);
+
+		const actual = await importLocalOrNpx(specifier, { confirm, importer });
+
+		expect(actual).toEqual({
+			kind: "npx",
+			resolved: expected,
+		});
+	});
 });

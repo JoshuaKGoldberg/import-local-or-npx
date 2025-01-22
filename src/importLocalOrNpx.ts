@@ -4,17 +4,21 @@ import { importFrom } from "./importFrom.js";
 import { Imported } from "./types.js";
 
 export interface ImportLocalOrNpxSettings {
+	confirm?: NpxConfirm;
 	importer?: ModuleImporter;
 	logger?: NpxImportLogger;
 }
 
 export type ModuleImporter = (source: string) => Promise<object>;
 
+export type NpxConfirm = (specifier: string) => Promise<Error | undefined>;
+
 export type NpxImportLogger = (message: string) => void;
 
 export async function importLocalOrNpx(
 	specifier: string,
 	{
+		confirm,
 		importer = async (source: string) => (await import(source)) as object,
 		logger,
 	}: ImportLocalOrNpxSettings = {},
@@ -24,6 +28,15 @@ export async function importLocalOrNpx(
 		return {
 			kind: "local",
 			resolved: importedLocal,
+		};
+	}
+
+	const cancellation = await confirm?.(specifier);
+	if (cancellation) {
+		return {
+			kind: "failure",
+			local: importedLocal,
+			npx: cancellation,
 		};
 	}
 

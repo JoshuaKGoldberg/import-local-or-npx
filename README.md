@@ -61,7 +61,7 @@ await importLocalOrNpx("../create-typescript-app", {
 
 1. Local import `{ kind: "local", resolved: object }`: if importing the specifier with `await import()` and [`enhanced-resolve`](https://github.com/webpack/enhanced-resolve) succeeded
 2. npx import `{ kind: "npx", resolved: object }`: failing that, if importing the specifier with [`importNpx`](https://github.com/geelen/npx-import) succeeded
-3. Failure `{ kind: "failure", local: Error; npx: Error }`: if both of those failed
+3. Failure `{ kind: "failure", local: Error; npx: Error }`: if both of those failed or were canceled
 
 ```ts
 import { importLocalOrNpx } from "import-local-or-npx";
