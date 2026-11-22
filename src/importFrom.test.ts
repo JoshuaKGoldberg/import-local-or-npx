@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { importFrom } from "./importFrom.js";
+import { importFrom } from "./importFrom.ts";
 
 const mockEnhancedResolved = vi.fn<typeof import("enhanced-resolve")>();
 
@@ -13,7 +13,7 @@ vi.mock("enhanced-resolve", () => ({
 const directory = "./example";
 const packageName = "my-package";
 
-describe("importFrom", () => {
+describe(importFrom, () => {
 	it("returns the error when enhancedResolve provides an error", async () => {
 		const error = new Error();
 		const importer = vi.fn();

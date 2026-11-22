@@ -1,7 +1,7 @@
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 
-import { importLocalOrNpx, ModuleImporter } from "./importLocalOrNpx.js";
+import { importLocalOrNpx, ModuleImporter } from "./importLocalOrNpx.ts";
 
 const mockNpxImport = vi.fn();
 
@@ -13,13 +13,13 @@ vi.mock("npx-import", () => ({
 
 const mockImportFrom = vi.fn();
 
-vi.mock("./importFrom.js", () => ({
+vi.mock("./importFrom.ts", () => ({
 	get importFrom() {
 		return mockImportFrom;
 	},
 }));
 
-describe("importLocalOrNpx", () => {
+describe(importLocalOrNpx, () => {
 	it("returns a local import when importFrom resolves with a module with the default importer", async () => {
 		const specifier = "./package.json";
 
