@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.2](https://github.com/JoshuaKGoldberg/import-local-or-npx/compare/0.3.1...0.3.2) (2026-11-24)
+
+### Bug Fixes
+
+- bump to create-typescript-app@2.87.18 ([#421](https://github.com/JoshuaKGoldberg/import-local-or-npx/issues/421)) ([f77c50a](https://github.com/JoshuaKGoldberg/import-local-or-npx/commit/f77c50a55821c9eda9d5d688bd335dd5bbb32351)), closes [#420](https://github.com/JoshuaKGoldberg/import-local-or-npx/issues/420)
+
 ## [0.3.1](https://github.com/JoshuaKGoldberg/import-local-or-npx/compare/0.3.0...0.3.1) (2025-04-01)
 
 ### Bug Fixes

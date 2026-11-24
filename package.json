@@ -1,6 +1,6 @@
 {
 	"name": "import-local-or-npx",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"description": "Imports a local package or one installed from npx. 🚚",
 	"repository": {
 		"type": "git",
