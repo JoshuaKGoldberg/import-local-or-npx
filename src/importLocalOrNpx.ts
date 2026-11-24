@@ -1,7 +1,7 @@
 import { npxImport } from "npx-import";
 
-import { importFrom } from "./importFrom.js";
-import { Imported } from "./types.js";
+import { importFrom } from "./importFrom.ts";
+import { Imported } from "./types.ts";
 
 export interface ImportLocalOrNpxSettings {
 	confirm?: NpxConfirm;

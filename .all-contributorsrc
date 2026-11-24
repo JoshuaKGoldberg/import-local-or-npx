@@ -26,6 +26,5 @@
   ],
   "projectName": "import-local-or-npx",
   "projectOwner": "JoshuaKGoldberg",
-  "repoType": "github",
-  "commitConvention": "angular"
+  "repoType": "github"
 }
